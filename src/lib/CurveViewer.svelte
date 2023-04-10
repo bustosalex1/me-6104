@@ -13,7 +13,7 @@
 		</T.PerspectiveCamera>
 
 		<T.DirectionalLight castShadow position={[3, 10, 10]} />
-		<T.DirectionalLight position={[-3, 10, -10]} intensity={0.2} />
+		<T.DirectionalLight position={[-10, 10, -10]} intensity={0.2} />
 		<T.AmbientLight intensity={0.2} />
 
 		<!-- Cube -->
@@ -28,7 +28,7 @@
 				/>
 
 				<T.BoxGeometry />
-				<T.MeshStandardMaterial color="#333333" />
+				<T.MeshStandardMaterial color="#FF0000" />
 			</T.Mesh>
 		</T.Group>
 
@@ -42,7 +42,7 @@
 
 <style>
 	div {
-		height: 100%;
-		width: 100%;
+		height: 500px;
+		width: 500px;
 	}
 </style>
