@@ -10,8 +10,10 @@
 	curve.addPoint(new Vector3(8, 5, 5));
 	let resolution = 100;
 	let displayPoints: Vector3[] = [];
-	let curveBuffer = new BufferGeometry().setFromPoints(displayPoints);
-	let line = new Line(curveBuffer);
+	let controlPolygonPoints: Vector3[] = [];
+	let line = new Line();
+	let controlPolygon = new Line();
+
 	$: {
 		displayPoints = [];
 		for (const index of range(0, resolution + 1)) {
@@ -19,6 +21,15 @@
 			displayPoints.push(curve.line(u));
 		}
 		line.geometry.setFromPoints(displayPoints);
+	}
+
+	$: {
+		controlPolygonPoints = [];
+		for (const { vector } of curve.points) {
+			controlPolygonPoints.push(vector);
+		}
+		controlPolygon.geometry.setFromPoints(controlPolygonPoints);
+        controlPolygon.computeLineDistances()
 	}
 </script>
 
@@ -63,6 +74,10 @@
 	{/each}
 	<Three type={Line} bind:ref={line}>
 		<T.LineBasicMaterial color="#FF0000" />
+	</Three>
+
+	<Three type={Line} bind:ref={controlPolygon}>
+		<T.LineDashedMaterial color="#000000" dashSize={0.1} gapSize={0.1} transparent={true} />
 	</Three>
 
 	<!-- Cube -->
