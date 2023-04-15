@@ -14,7 +14,7 @@
 		<p>By Alexander Bustos and Darren Kosen</p>
 	</div>
 	<div class="flex flex-row space-x-2">
-		<div class="border border-black rounded-md drop-shadow-md bg-base-100">
+		<div class="border border-black rounded-md drop-shadow-md bg-base-100 w-96 h-96">
 			<Canvas>
 				<CurveViewer />
 			</Canvas>
