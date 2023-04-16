@@ -1,6 +1,6 @@
 <script lang="ts">
-	import CurveViewer from '$lib/CurveViewer.svelte';
-	import ControlPanel from '$lib/ControlPanel.svelte';
+	import CurveViewer from './components/CurveViewer.svelte';
+	import ControlPanel from './components/ControlPanel.svelte';
 	import { Canvas } from '@threlte/core';
 </script>
 
