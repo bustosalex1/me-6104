@@ -98,7 +98,7 @@ export class BezierSurface {
 	}
 
 	/**
-	 * Generates the geometry used when rendering the surface using Three.js.
+	 * Generates the geometry used to render the surface using Three.js.
 	 */
 	generate() {
 		const width = this.resolution
@@ -178,8 +178,9 @@ export class BezierSurface {
 	}
 
 	recomputeCoeffients() {
-		this.rowOrder = this.points[0].length - 1
-		this.colOrder = this.points.length - 1
+		// this is probably not very safe
+		this.rowOrder = this.points[0].length - 1 ?? 0
+		this.colOrder = this.points.length - 1 ?? 0
 
 		for (let row = 0; row < this.points.length; row++) {
 			for (let col = 0; col < this.points[row].length; col++) {
@@ -201,6 +202,17 @@ export class BezierSurface {
 
 	computeControlPolygon() {
 		const vectors = this.vectors()
+		const rowsAndColumns = this.rowOrder + this.colOrder + 2
+
+		// make sure the number of lines in the control polygon matches the number of rows and
+		// columns that make up the surface
+		if (this.controlPolygon.length > rowsAndColumns) {
+			while (this.controlPolygon.length > rowsAndColumns) {
+				this.controlPolygon.pop()
+			}
+		} else if (this.controlPolygon.length < rowsAndColumns) {
+			this.controlPolygon.push(new Line())
+		}
 
 		for (let i = 0; i < this.rowOrder + 1; i++) {
 			this.controlPolygon[i].geometry.setFromPoints(vectors[i])

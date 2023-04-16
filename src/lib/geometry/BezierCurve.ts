@@ -2,6 +2,10 @@ import { Vector3, Line } from 'three'
 import type { Point, CurveCoefficient, Bezier } from '$lib/types'
 import { bersteinPolynomial } from './math'
 
+/**
+ * Represents a Bezier curve defined by a variable number of control points. Also provides
+ * functionality needed to render the curve with Three.js.
+ */
 export class BezierCurve implements Bezier {
 	points: Point<CurveCoefficient>[] = []
 	order: number = this.points.length

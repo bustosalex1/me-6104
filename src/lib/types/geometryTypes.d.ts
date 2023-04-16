@@ -17,6 +17,23 @@ export interface Bezier {
 }
 
 /**
+ * Settings defines the settings displayed for the curve and surface on the control panel, and is
+ * used as the object in a store so that various components can access it.
+ */
+export interface Settings {
+	curveActive: number
+	surface: {
+		controlPolygonActive: boolean
+		pointsActive: boolean
+	}
+	curve: {
+		controlPolygonActive: boolean
+		pointsActive: boolean
+	}
+    controlPolygonActive: boolean
+}
+
+/**
  * A coefficient used for Bezier curves. Accepts a single parameter, u, and evaluates a Bernstein
  * polynomial at u.
  */
