@@ -26,23 +26,62 @@
 			</button>
 		{/each}
 	</div>
-
 	<div class:hidden={$settings.curveActive != 0}>
-		<button
-			class="btn btn-outline btn-sm"
-			on:click={() => {
-				curve.addPoint(new Vector3(0, 0, 0));
-				curve = curve;
-			}}>Add Control Point</button
-		>
+		<div class="flex flex-col justify-center space-y-2">
+			<button
+				class="btn btn-outline btn-xs"
+				on:click={() => {
+					curve.addPoint(new Vector3(0, 0, 0));
+					curve = curve;
+				}}>Add Control Point</button
+			>
 
-		<button
-			class="btn btn-outline btn-sm"
-			on:click={() => {
-				curve.removePoint();
-				curve = curve;
-			}}>Remove Control Point</button
-		>
+			<button
+				class="btn btn-outline btn-xs"
+				on:click={() => {
+					curve.removePoint();
+					curve = curve;
+				}}>Remove Control Point</button
+			>
+			<div class="overflow-scroll">
+				<table class="table table-compact w-full">
+					<thead>
+						<tr>
+							<th>Index</th>
+							<th>X</th>
+							<th>Y</th>
+							<th>Z</th>
+						</tr>
+					</thead>
+					{#each curve.points as { vector }, index}
+						<tr>
+							<th>{index}</th>
+							<td>
+								<input
+									type="number"
+									class="input input-bordered input-xs w-full max-w-xs"
+									value={vector.x.toFixed(2)}
+								/>
+							</td>
+							<td>
+								<input
+									type="number"
+									class="input input-bordered input-xs w-full max-w-xs"
+									value={vector.y.toFixed(2)}
+								/>
+							</td>
+							<td>
+								<input
+									type="number"
+									class="input input-bordered input-xs w-full max-w-xs"
+									value={vector.y.toFixed(2)}
+								/>
+							</td>
+						</tr>
+					{/each}
+				</table>
+			</div>
+		</div>
 	</div>
 
 	<div class:hidden={$settings.curveActive != 1}>
