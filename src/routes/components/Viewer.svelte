@@ -9,20 +9,23 @@
 	export let surface: BezierSurface;
 </script>
 
-<Canvas>
-	<T.PerspectiveCamera makeDefault position={[10, 10, 10]} fov={24}>
-		<OrbitControls maxPolarAngle={degToRad(80)} enableZoom={true} target={{ y: 0.5 }} />
-	</T.PerspectiveCamera>
+<div class="w-full h-full">
+	<Canvas>
+		<!-- Environment stuff, lights, camera, and whatnot -->
+		<T.PerspectiveCamera makeDefault position={[10, 10, 10]} fov={24}>
+			<OrbitControls maxPolarAngle={degToRad(80)} enableZoom={true} target={{ y: 0.5 }} />
+		</T.PerspectiveCamera>
+		<T.DirectionalLight castShadow position={[3, 10, 10]} />
+		<T.DirectionalLight position={[-10, 10, -10]} intensity={0.2} />
+		<T.AmbientLight intensity={0.2} />
 
-	<T.DirectionalLight castShadow position={[3, 10, 10]} />
-	<T.DirectionalLight position={[-10, 10, -10]} intensity={0.2} />
-	<T.AmbientLight intensity={0.2} />
+		<!-- Curve/Surface goes here -->
+		<Curve bind:curve />
+		<Surface bind:surface />
 
-	<!-- Curve/Surface goes here -->
-	<Curve bind:curve />
-	<Surface bind:surface />
-
-	<T.Group>
-		<T.GridHelper />
-	</T.Group>
-</Canvas>
+		<!-- grid at the bottom -->
+		<T.Group>
+			<T.GridHelper />
+		</T.Group>
+	</Canvas>
+</div>

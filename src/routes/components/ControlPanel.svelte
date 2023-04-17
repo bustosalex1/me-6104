@@ -43,19 +43,19 @@
 					curve = curve;
 				}}>Remove Control Point</button
 			>
-			<div class="overflow-scroll">
+			<div class="h-52 overflow-auto">
 				<table class="table table-compact w-full">
 					<thead>
 						<tr>
 							<th>Index</th>
-							<th>X</th>
-							<th>Y</th>
-							<th>Z</th>
+							<th class="text-center">X</th>
+							<th class="text-center">Y</th>
+							<th class="text-center">Z</th>
 						</tr>
 					</thead>
 					{#each curve.points as { vector }, index}
 						<tr>
-							<th>{index}</th>
+							<th class="text-center">{index}</th>
 							<td>
 								<input
 									type="number"
