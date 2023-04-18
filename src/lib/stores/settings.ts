@@ -4,6 +4,8 @@ import type { Settings } from '$lib/types'
 const createSettings = () => {
 	const defaultSettings: Settings = {
 		curveActive: 0,
+		u: 0.5,
+		w: 0.5,
 		toggles: {
 			controlPolygonActive: {
 				value: false,
@@ -16,6 +18,10 @@ const createSettings = () => {
 			snapActive: {
 				value: false,
 				label: 'Snap to Move'
+			},
+			indicatorActive: {
+				value: false,
+				label: 'Indicator'
 			}
 		},
 		curve: {},

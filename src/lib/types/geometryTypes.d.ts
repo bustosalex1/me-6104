@@ -26,6 +26,8 @@ export interface ToggleSetting {
  */
 export interface Settings {
 	curveActive: number
+	u: number
+	w: number
 	toggles: {
 		[key: string]: ToggleSetting
 	}

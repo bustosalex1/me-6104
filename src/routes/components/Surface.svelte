@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { T, TransformControls, Three, InteractiveObject } from '@threlte/core';
 	import type { BezierSurface } from '$lib/geometry';
-	import { Line, Mesh, MeshStandardMaterial, DoubleSide } from 'three';
+	import { Line, Mesh, MeshStandardMaterial, DoubleSide, Vector3 } from 'three';
 	import { settings } from '$lib/stores';
 	export let surface: BezierSurface;
 
@@ -17,14 +17,25 @@
 		})
 	);
 
+	let indicator = new Vector3();
+
 	$: {
 		surfaceMesh.geometry = surface.generate();
 		surface.computeControlPolygon();
 		surfaceMesh.material.wireframe = $settings.surface.wireframe.value;
+		indicator = surface.evaluate($settings.u, $settings.w);
 	}
 </script>
 
 <T.Group visible={$settings.curveActive !== 0}>
+	{#if $settings.toggles.indicatorActive.value}
+		<T.Group>
+			<T.Mesh position.x={indicator.x} position.y={indicator.y} position.z={indicator.z}>
+				<T.SphereGeometry args={[0.1]} />
+				<T.MeshStandardMaterial color="#0000FF" />
+			</T.Mesh>
+		</T.Group>
+	{/if}
 	<!-- control points -->
 	{#each surface.points as row}
 		{#each row as point}

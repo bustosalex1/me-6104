@@ -1,18 +1,28 @@
 <script lang="ts">
 	import { T, TransformControls, Three, InteractiveObject } from '@threlte/core';
 	import type { BezierCurve } from '$lib/geometry';
-	import { Line } from 'three';
+	import { Line, Vector3 } from 'three';
 	import { settings } from '$lib/stores';
 	export let curve: BezierCurve;
 	let line = new Line();
+	let indicator = new Vector3();
 
 	$: {
 		line.geometry.setFromPoints(curve.generate());
 		curve.computeControlPolygon();
+		indicator = curve.evaluate($settings.u);
 	}
 </script>
 
 <T.Group visible={$settings.curveActive === 0}>
+	{#if $settings.toggles.indicatorActive.value}
+		<T.Group>
+			<T.Mesh position.x={indicator.x} position.y={indicator.y} position.z={indicator.z}>
+				<T.SphereGeometry args={[0.1]} />
+				<T.MeshStandardMaterial color="#0000FF" />
+			</T.Mesh>
+		</T.Group>
+	{/if}
 	{#each curve.points as point}
 		<!-- control points -->
 		<T.Group visible={$settings.toggles.pointsActive.value}>

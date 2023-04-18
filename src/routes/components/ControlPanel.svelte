@@ -27,6 +27,36 @@
 		{/each}
 	</div>
 
+	<label class="label cursor-pointer justify-start space-x-2 flex-1 whitespace-nowrap">
+		<input
+			type="range"
+			min="0"
+			max="100"
+			value="50"
+			class="range"
+			on:input={(e) => {
+				$settings.u = +e.currentTarget.value / 100;
+			}}
+		/>
+		<span class="text-left text-sm"> <b>U</b> {$settings.u.toFixed(2)}</span>
+	</label>
+
+	{#if $settings.curveActive === 1}
+		<label class="label cursor-pointer justify-start space-x-2 flex-1 whitespace-nowrap">
+			<input
+				type="range"
+				min="0"
+				max="100"
+				value="50"
+				class="range"
+				on:input={(e) => {
+					$settings.w = +e.currentTarget.value / 100;
+				}}
+			/>
+			<span class="text-left text-sm"> <b>W</b> {$settings.w.toFixed(2)}</span>
+		</label>
+	{/if}
+
 	<div class="form-control flex-row lg:flex-wrap justify-evenly lg:justify-start">
 		{#each Object.entries($settings.toggles) as [name, setting]}
 			<label class="label cursor-pointer justify-start space-x-2 flex-1 whitespace-nowrap">
@@ -151,31 +181,42 @@
 							<th class="text-center">Z</th>
 						</tr>
 					</thead>
-					{#each curve.points as { vector }, index}
-						<tr>
-							<th class="text-center">{index}</th>
-							<td>
-								<input
-									type="number"
-									class="input input-bordered input-xs w-full max-w-xs"
-									value={vector.x.toFixed(2)}
-								/>
-							</td>
-							<td>
-								<input
-									type="number"
-									class="input input-bordered input-xs w-full max-w-xs"
-									value={vector.y.toFixed(2)}
-								/>
-							</td>
-							<td>
-								<input
-									type="number"
-									class="input input-bordered input-xs w-full max-w-xs"
-									value={vector.y.toFixed(2)}
-								/>
-							</td>
-						</tr>
+					{#each surface.points as row, rowIndex}
+						{#each row as { vector }, colIndex}
+							<tr>
+								<th class="text-center">({rowIndex}, {colIndex})</th>
+								<td>
+									<input
+										type="number"
+										class="input input-bordered input-xs w-full max-w-xs"
+										value={vector.x.toFixed(2)}
+										on:input={(e) => {
+											vector.x = +e.currentTarget.value;
+										}}
+									/>
+								</td>
+								<td>
+									<input
+										type="number"
+										class="input input-bordered input-xs w-full max-w-xs"
+										value={vector.y.toFixed(2)}
+										on:input={(e) => {
+											vector.y = +e.currentTarget.value;
+										}}
+									/>
+								</td>
+								<td>
+									<input
+										type="number"
+										class="input input-bordered input-xs w-full max-w-xs"
+										value={vector.z.toFixed(2)}
+										on:input={(e) => {
+											vector.z = +e.currentTarget.value;
+										}}
+									/>
+								</td>
+							</tr>
+						{/each}
 					{/each}
 				</table>
 			</div>
