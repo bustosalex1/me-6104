@@ -29,7 +29,7 @@
 
 	<div class="form-control flex-row lg:flex-wrap justify-evenly lg:justify-start">
 		{#each Object.entries($settings.toggles) as [name, setting]}
-			<label class="label cursor-pointer justify-start space-x-2">
+			<label class="label cursor-pointer justify-start space-x-2 flex-1 whitespace-nowrap">
 				<input
 					type="checkbox"
 					class="toggle toggle-sm"
@@ -38,6 +38,18 @@
 				<span class="text-left text-sm">{setting.label}</span>
 			</label>
 		{/each}
+		{#if $settings.curveActive === 1}
+			{#each Object.entries($settings.surface) as [name, setting]}
+				<label class="label cursor-pointer justify-start space-x-2 flex-1 whitespace-nowrap">
+					<input
+						type="checkbox"
+						class="toggle toggle-sm"
+						bind:checked={$settings.surface[name].value}
+					/>
+					<span class="text-left text-sm">{setting.label}</span>
+				</label>
+			{/each}
+		{/if}
 	</div>
 
 	<div class:hidden={$settings.curveActive != 0}>
@@ -75,6 +87,9 @@
 									type="number"
 									class="input input-bordered input-xs w-full max-w-xs"
 									value={vector.x.toFixed(2)}
+									on:input={(e) => {
+										vector.x = +e.currentTarget.value;
+									}}
 								/>
 							</td>
 							<td>
@@ -82,13 +97,19 @@
 									type="number"
 									class="input input-bordered input-xs w-full max-w-xs"
 									value={vector.y.toFixed(2)}
+									on:input={(e) => {
+										vector.y = +e.currentTarget.value;
+									}}
 								/>
 							</td>
 							<td>
 								<input
 									type="number"
 									class="input input-bordered input-xs w-full max-w-xs"
-									value={vector.y.toFixed(2)}
+									value={vector.z.toFixed(2)}
+									on:input={(e) => {
+										vector.z = +e.currentTarget.value;
+									}}
 								/>
 							</td>
 						</tr>
@@ -158,16 +179,6 @@
 					{/each}
 				</table>
 			</div>
-		</div>
-		<div class="form-control">
-			<label class="label cursor-pointer justify-start space-x-2">
-				<input
-					type="checkbox"
-					class="toggle toggle-sm"
-					bind:checked={$settings.surface.wireframe.value}
-				/>
-				<span class="text-left">Wireframe</span>
-			</label>
 		</div>
 	</div>
 </div>
