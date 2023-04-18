@@ -2,6 +2,7 @@
 	import type { BezierCurve, BezierSurface } from '$lib/geometry';
 	import { Vector3 } from 'three';
 	import { settings } from '$lib/stores';
+	import BarGraph from './BarGraph.svelte';
 	export let curve: BezierCurve;
 	export let surface: BezierSurface;
 
@@ -27,6 +28,7 @@
 		{/each}
 	</div>
 
+	<BarGraph {curve} />
 	<label class="label cursor-pointer justify-start space-x-2 flex-1 whitespace-nowrap">
 		<input
 			type="range"
@@ -81,7 +83,6 @@
 			{/each}
 		{/if}
 	</div>
-
 	<div class:hidden={$settings.curveActive != 0}>
 		<div class="flex flex-col justify-center space-y-2">
 			<button
