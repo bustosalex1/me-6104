@@ -11,7 +11,7 @@ export class BezierCurve implements Bezier {
 	order: number = this.points.length
 	resolution: number = 100
 	controlPolygon: Line = new Line()
-
+	
 	constructor(
 		points: Vector3[] = [
 			new Vector3(0, 0, 0),
@@ -77,4 +77,34 @@ export class BezierCurve implements Bezier {
 		this.controlPolygon.geometry.setFromPoints(this.vectors())
 		this.controlPolygon.computeLineDistances()
 	}
+//need to convert to use the 3d coord
+	evaluateBasisFunctions(u: number): number[] {
+		const basisFuncs: number[] = [];
+		const n = this.points.length - 1;
+	
+		for (let i = 0; i <= n; i++) {
+		  basisFuncs[i] = this.Polynomial(i, n, u);
+		}
+	
+		return basisFuncs;
+	  }
+	private Polynomial(i: number, n: number, u: number): number {
+		return (
+		  this.binomialCoefficient(n, i) *
+		  Math.pow(u, i) *
+		  Math.pow(1 - u, n - i)
+		);
+	  }
+	
+	  private binomialCoefficient(n: number, k: number): number {
+		let coeff = 1;
+		for (let i = n - k + 1; i <= n; i++) {
+		  coeff *= i;
+		}
+		for (let i = 1; i <= k; i++) {
+		  coeff /= i;
+		}
+		return coeff;
+	  }
+
 }
