@@ -2,31 +2,30 @@
 <html lang="en" data-theme="bumblebee">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="./me6104-project/favicon.png" />
+		<link rel="icon" href="./favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta http-equiv="content-security-policy" content="">
-		<link rel="modulepreload" href="./me6104-project/_app/immutable/entry/start.41a209af.js">
-		<link rel="modulepreload" href="./me6104-project/_app/immutable/chunks/index.2e4323a1.js">
-		<link rel="modulepreload" href="./me6104-project/_app/immutable/chunks/singletons.6a552eb5.js">
-		<link rel="modulepreload" href="./me6104-project/_app/immutable/chunks/index.dc0bf139.js">
-		<link rel="modulepreload" href="./me6104-project/_app/immutable/entry/app.dbbc888c.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.206b7dd0.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.2e4323a1.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.297148ec.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.dc0bf139.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.8b31bcbf.js">
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
 			<script>
 				{
-					__sveltekit_bnor75 = {
+					__sveltekit_xwbqnx = {
 						env: {},
-						assets: "/me6104-project",
-						base: new URL("./me6104-project", location).pathname,
+						base: new URL(".", location).pathname.slice(0, -1),
 						element: document.currentScript.parentElement
 					};
 
 					Promise.all([
-						import("./me6104-project/_app/immutable/entry/start.41a209af.js"),
-						import("./me6104-project/_app/immutable/entry/app.dbbc888c.js")
+						import("./_app/immutable/entry/start.206b7dd0.js"),
+						import("./_app/immutable/entry/app.8b31bcbf.js")
 					]).then(([kit, app]) => {
-						kit.start(app, __sveltekit_bnor75.element);
+						kit.start(app, __sveltekit_xwbqnx.element);
 					});
 				}
 			</script>
