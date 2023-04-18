@@ -15,7 +15,7 @@
 <T.Group visible={$settings.curveActive === 0}>
 	{#each curve.points as point}
 		<!-- control points -->
-		<T.Group>
+		<T.Group visible={$settings.toggles.pointsActive.value}>
 			<T.Mesh
 				position.x={point.vector.x}
 				position.y={point.vector.y}
@@ -33,6 +33,7 @@
 					showX={point.enabled}
 					showY={point.enabled}
 					showZ={point.enabled}
+					translationSnap={$settings.toggles.snapActive.value ? 1 : 0}
 				/>
 				{#if $settings.curveActive === 0}
 					<InteractiveObject
@@ -52,7 +53,11 @@
 	</Three>
 
 	<!-- control polygon -->
-	<Three type={Line} bind:ref={curve.controlPolygon}>
+	<Three
+		type={Line}
+		bind:ref={curve.controlPolygon}
+		visible={$settings.toggles.controlPolygonActive.value}
+	>
 		<T.LineDashedMaterial color="#000000" dashSize={0.1} gapSize={0.1} transparent={true} />
 	</Three>
 </T.Group>

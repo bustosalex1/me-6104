@@ -20,6 +20,7 @@
 	$: {
 		surfaceMesh.geometry = surface.generate();
 		surface.computeControlPolygon();
+		surfaceMesh.material.wireframe = $settings.surface.wireframe.value;
 	}
 </script>
 
@@ -27,7 +28,7 @@
 	<!-- control points -->
 	{#each surface.points as row}
 		{#each row as point}
-			<T.Group>
+			<T.Group visible={$settings.toggles.pointsActive.value}>
 				<T.Mesh
 					position.x={point.vector.x}
 					position.y={point.vector.y}
@@ -45,6 +46,7 @@
 						showX={point.enabled}
 						showY={point.enabled}
 						showZ={point.enabled}
+						translationSnap={$settings.toggles.snapActive.value ? 1 : 0}
 					/>
 
 					{#if $settings.curveActive === 1}
@@ -61,13 +63,11 @@
 	{/each}
 
 	<!-- the control polygon -->
-	{#if $settings.controlPolygonActive}
-		{#each surface.controlPolygon as polygon}
-			<Three type={Line} bind:ref={polygon}>
-				<T.LineDashedMaterial color="#0000FF" dashSize={0.1} gapSize={0.1} transparent={true} />
-			</Three>
-		{/each}
-	{/if}
+	{#each surface.controlPolygon as polygon}
+		<Three type={Line} bind:ref={polygon} visible={$settings.toggles.controlPolygonActive.value}>
+			<T.LineDashedMaterial color="#000000" dashSize={0.1} gapSize={0.1} transparent={true} />
+		</Three>
+	{/each}
 
 	<!-- the actual surface -->
 	<Three type={Mesh} bind:ref={surfaceMesh} castShadow />

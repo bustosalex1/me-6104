@@ -179,8 +179,8 @@ export class BezierSurface {
 
 	recomputeCoeffients() {
 		// this is probably not very safe
-		this.rowOrder = this.points[0].length - 1 ?? 0
-		this.colOrder = this.points.length - 1 ?? 0
+		this.rowOrder = this.points.length - 1 ?? 0
+		this.colOrder = this.points[0].length - 1 ?? 0
 
 		for (let row = 0; row < this.points.length; row++) {
 			for (let col = 0; col < this.points[row].length; col++) {

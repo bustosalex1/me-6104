@@ -16,21 +16,27 @@ export interface Bezier {
 	computeControlPolygon: () => void
 }
 
+export interface ToggleSetting {
+	value: boolean
+	label: string
+}
 /**
  * Settings defines the settings displayed for the curve and surface on the control panel, and is
  * used as the object in a store so that various components can access it.
  */
 export interface Settings {
 	curveActive: number
+	toggles: {
+		[key: string]: ToggleSetting
+	}
+
 	surface: {
-		controlPolygonActive: boolean
-		pointsActive: boolean
+		[key: string]: ToggleSetting
 	}
+
 	curve: {
-		controlPolygonActive: boolean
-		pointsActive: boolean
+		[key: string]: ToggleSetting
 	}
-    controlPolygonActive: boolean
 }
 
 /**
