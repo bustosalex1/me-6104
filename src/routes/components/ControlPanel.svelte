@@ -26,6 +26,20 @@
 			</button>
 		{/each}
 	</div>
+
+	<div class="form-control flex-row lg:flex-wrap justify-evenly lg:justify-start">
+		{#each Object.entries($settings.toggles) as [name, setting]}
+			<label class="label cursor-pointer justify-start space-x-2">
+				<input
+					type="checkbox"
+					class="toggle toggle-sm"
+					bind:checked={$settings.toggles[name].value}
+				/>
+				<span class="text-left text-sm">{setting.label}</span>
+			</label>
+		{/each}
+	</div>
+
 	<div class:hidden={$settings.curveActive != 0}>
 		<div class="flex flex-col justify-center space-y-2">
 			<button
@@ -85,19 +99,74 @@
 	</div>
 
 	<div class:hidden={$settings.curveActive != 1}>
+		<div class="flex flex-col justify-center space-y-2">
+			<button
+				class="btn btn-outline btn-xs"
+				on:click={() => {
+					surface.addRow([
+						new Vector3(0, 0, 0),
+						new Vector3(0, 0, 0),
+						new Vector3(0, 0, 0),
+						new Vector3(0, 0, 0)
+					]);
+					surface = surface;
+				}}>Add Control Point Row</button
+			>
+
+			<button
+				class="btn btn-outline btn-xs"
+				on:click={() => {
+					surface.removeRow();
+					surface = surface;
+				}}>Remove Control Point Row</button
+			>
+			<div class="h-52 overflow-auto">
+				<table class="table table-compact w-full">
+					<thead>
+						<tr>
+							<th>Index</th>
+							<th class="text-center">X</th>
+							<th class="text-center">Y</th>
+							<th class="text-center">Z</th>
+						</tr>
+					</thead>
+					{#each curve.points as { vector }, index}
+						<tr>
+							<th class="text-center">{index}</th>
+							<td>
+								<input
+									type="number"
+									class="input input-bordered input-xs w-full max-w-xs"
+									value={vector.x.toFixed(2)}
+								/>
+							</td>
+							<td>
+								<input
+									type="number"
+									class="input input-bordered input-xs w-full max-w-xs"
+									value={vector.y.toFixed(2)}
+								/>
+							</td>
+							<td>
+								<input
+									type="number"
+									class="input input-bordered input-xs w-full max-w-xs"
+									value={vector.y.toFixed(2)}
+								/>
+							</td>
+						</tr>
+					{/each}
+				</table>
+			</div>
+		</div>
 		<div class="form-control">
 			<label class="label cursor-pointer justify-start space-x-2">
 				<input
 					type="checkbox"
 					class="toggle toggle-sm"
-					checked={$settings.controlPolygonActive}
-					on:input={() => {
-						settings.update((settings) => {
-							return { ...settings, controlPolygonActive: !settings.controlPolygonActive };
-						});
-					}}
+					bind:checked={$settings.surface.wireframe.value}
 				/>
-				<span class="text-left">Control Polygon</span>
+				<span class="text-left">Wireframe</span>
 			</label>
 		</div>
 	</div>

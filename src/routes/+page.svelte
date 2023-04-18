@@ -2,6 +2,7 @@
 	import ControlPanel from './components/ControlPanel.svelte';
 	import { BezierCurve, BezierSurface } from '$lib/geometry';
 	import Viewer from './components/Viewer.svelte';
+	import BasisFuncGraph from './components/BasisFuncGraph.svelte';
 
 	let curve = new BezierCurve();
 	let surface = new BezierSurface();
@@ -12,13 +13,14 @@
 		<h1 class="text text-3xl font-semibold">
 			ME6104 Final Project: Bézier Curve and Surface Explorer
 		</h1>
-		<p>By Alexander Bustos and Darren Kosen</p>
+		<p>By Alexander Bustos & Darren Kosen</p>
 	</div>
 	<div class="flex flex-col space-y-2 justify-center lg:flex-row lg:space-x-2 lg:space-y-0 h-full">
 		<div
 			class="border border-black rounded-md drop-shadow-md bg-base-100 w-full lg:w-3/4 aspect-video"
 		>
 			<Viewer bind:curve bind:surface />
+			<BasisFuncGraph curve={curve} />
 		</div>
 
 		<div class="border border-black rounded-md drop-shadow-md bg-base-100 w-full lg:w-1/4">
