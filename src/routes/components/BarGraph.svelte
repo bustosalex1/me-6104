@@ -51,6 +51,7 @@
 				{#each curve.points as point, index}
 					<g transform="translate({xScale(index) + 2}, {yScale(point.coefficient($settings.u))})">
 						<rect
+							class="fill-base-content"
 							width={barWidth + 1}
 							height={yScale(0) - yScale(point.coefficient($settings.u))}
 						/>

@@ -59,7 +59,7 @@
 		</label>
 	{/if}
 
-	<div class="form-control flex-row lg:flex-wrap justify-evenly lg:justify-start">
+	<div class="form-control flex-row flex-wrap justify-evenly">
 		{#each Object.entries($settings.toggles) as [name, setting]}
 			<label class="label cursor-pointer justify-start space-x-2 flex-1 whitespace-nowrap">
 				<input
