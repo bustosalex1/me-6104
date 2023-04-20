@@ -11,7 +11,7 @@
 	<title>ME 6104 Final Project</title>
 </svelte:head>
 
-<div class="flex flex-col min-h-screen w-5/6 mx-auto space-x-2 space-y-6 justify-center">
+<div class="flex flex-col py-10 w-5/6 mx-auto space-x-2 space-y-6 justify-center">
 	<div class="text-center flex flex-col justify-end bg-base-100">
 		<h1 class="text text-3xl font-semibold">
 			ME6104 Final Project: Bézier Curve and Surface Explorer
