@@ -20,7 +20,7 @@
 	</div>
 	<div class="flex flex-col space-y-2 justify-center lg:flex-row lg:space-x-2 lg:space-y-0 h-full">
 		<div
-			class="border border-black rounded-md drop-shadow-md bg-base-100 w-full lg:w-3/4 aspect-video"
+			class="border border-black rounded-md drop-shadow-md bg-base-100 w-full lg:w-3/4 aspect-video viewer"
 		>
 			<Viewer bind:curve bind:surface />
 		</div>
@@ -30,3 +30,9 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.viewer {
+		height: 750px;
+	}
+</style>

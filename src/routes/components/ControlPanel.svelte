@@ -3,6 +3,7 @@
 	import { Vector3 } from 'three';
 	import { settings } from '$lib/stores';
 	import BarGraph from './BarGraph.svelte';
+	import Heatmap from './Heatmap.svelte';
 	export let curve: BezierCurve;
 	export let surface: BezierSurface;
 
@@ -28,7 +29,11 @@
 		{/each}
 	</div>
 
-	<BarGraph {curve} />
+	{#if $settings.curveActive === 0}
+		<BarGraph {curve} />
+	{:else}
+		<!-- <Heatmap {surface} /> -->
+	{/if}
 	<label class="label cursor-pointer justify-start space-x-2 flex-1 whitespace-nowrap">
 		<input
 			type="range"
@@ -88,7 +93,11 @@
 			<button
 				class="btn btn-outline btn-xs"
 				on:click={() => {
-					curve.addPoint(new Vector3(0, 0, 0));
+					const endpoint = new Vector3(0, 0, 0);
+					if (curve.points.length > 0) {
+						endpoint.x = curve.points[curve.points.length - 1].vector.x + 1;
+					}
+					curve.addPoint(endpoint);
 					curve = curve;
 				}}>Add Control Point</button
 			>
@@ -155,12 +164,29 @@
 			<button
 				class="btn btn-outline btn-xs"
 				on:click={() => {
-					surface.addRow([
-						new Vector3(0, 0, 0),
-						new Vector3(0, 0, 0),
-						new Vector3(0, 0, 0),
-						new Vector3(0, 0, 0)
-					]);
+					let row = [];
+					if (surface.points.length > 0) {
+						console.log(surface.points);
+						let endrow = surface.points.length - 1;
+						for (let i = 0; i < surface.points[endrow].length; i++) {
+							console.log(i);
+							row.push(
+								new Vector3(
+									surface.points[endrow][i].vector.x,
+									surface.points[endrow][i].vector.y,
+									surface.points[endrow][i].vector.z + 1
+								)
+							);
+						}
+					} else {
+						row = [
+							new Vector3(0, 0, 0),
+							new Vector3(1, 0, 0),
+							new Vector3(2, 0, 0),
+							new Vector3(3, 0, 0)
+						];
+					}
+					surface.addRow(row);
 					surface = surface;
 				}}>Add Control Point Row</button
 			>
@@ -172,7 +198,7 @@
 					surface = surface;
 				}}>Remove Control Point Row</button
 			>
-			<div class="h-52 overflow-auto">
+			<div class="h-80 overflow-auto">
 				<table class="table table-compact w-full">
 					<thead>
 						<tr>
