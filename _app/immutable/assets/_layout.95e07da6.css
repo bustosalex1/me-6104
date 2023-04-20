@@ -2787,9 +2787,6 @@ html {
 .h-full {
   height: 100%;
 }
-.min-h-screen {
-  min-height: 100vh;
-}
 .w-5\/6 {
   width: 83.333333%;
 }
@@ -2881,6 +2878,10 @@ html {
 }
 .p-2 {
   padding: 0.5rem;
+}
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 .text-left {
   text-align: left;
