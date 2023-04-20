@@ -7,10 +7,13 @@
 	import Surface from './Surface.svelte';
 	export let curve: BezierCurve;
 	export let surface: BezierSurface;
+
+	let width = 500;
+	let height = 500;
 </script>
 
-<div class="w-full h-full">
-	<Canvas>
+<div class="w-full h-full" bind:clientWidth={width} bind:clientHeight={height}>
+	<Canvas size={{ width, height }}>
 		<!-- Environment stuff, lights, camera, and whatnot -->
 		<T.PerspectiveCamera makeDefault position={[10, 10, 10]} fov={24}>
 			<OrbitControls maxPolarAngle={degToRad(80)} enableZoom={true} target={{ y: 0.5 }} />

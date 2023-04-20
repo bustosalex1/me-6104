@@ -21,7 +21,7 @@
 		<p>By Alexander Bustos and Darren Kosen</p>
 	</div>
 	<div class="row-start-2 row-span-1 lg:row-span-3 col-start-1 col-span-full lg:col-span-4">
-		<div class="border border-black rounded-md drop-shadow-md bg-base-100 w-full h-full">
+		<div class="border border-black rounded-md drop-shadow-md bg-base-100 h-full">
 			<Viewer bind:curve bind:surface />
 		</div>
 	</div>
