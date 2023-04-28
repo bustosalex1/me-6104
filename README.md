@@ -1,38 +1,33 @@
-# create-svelte
+# ME 6104 Final Project: Interactive Curve and Surface Explorer
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Authors: Alexander Bustos and Darren Kosen
 
-## Creating a project
+## Initializing the Project
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+This project is built with SvelteKit and its intended package manager is yarn. To initialize the project and install dependencies, ensure yarn is installed on your system, then run
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+yarn
 ```
 
-## Building
-
-To create a production version of your app:
+`npm` can also be used, but this option is untested. Dependencies can be installed here using:
 
 ```bash
-npm run build
+npm install
 ```
 
-You can preview the production build with `npm run preview`.
+## Running the Project
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Once dependences have been installed, a development server can be started with `yarn`:
+
+```bash
+yarn run dev --open
+```
+
+Or equivalently with `npm`:
+
+```bash
+npm run dev --open
+```
+
+At this point, the application will open in a web browser.
