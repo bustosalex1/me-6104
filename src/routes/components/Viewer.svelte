@@ -2,7 +2,6 @@
 	import type { BezierCurve, BezierSurface } from '$lib/geometry';
 	import { T, OrbitControls, Canvas } from '@threlte/core';
 	import { degToRad } from 'three/src/math/MathUtils';
-	import { settings } from '$lib/stores';
 	import Curve from './Curve.svelte';
 	import Surface from './Surface.svelte';
 	export let curve: BezierCurve;
