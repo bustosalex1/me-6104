@@ -3,7 +3,6 @@
 	import { Vector3 } from 'three';
 	import { settings } from '$lib/stores';
 	import BarGraph from './BarGraph.svelte';
-	import Heatmap from './Heatmap.svelte';
 	export let curve: BezierCurve;
 	export let surface: BezierSurface;
 
