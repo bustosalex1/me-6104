@@ -1,5 +1,5 @@
-import { writable } from 'svelte/store'
-import type { Settings } from '$lib/types'
+import { writable } from 'svelte/store';
+import type { Settings } from '$lib/types';
 
 const createSettings = () => {
 	const defaultSettings: Settings = {
@@ -8,7 +8,7 @@ const createSettings = () => {
 		w: 0.5,
 		toggles: {
 			controlPolygonActive: {
-				value: false,
+				value: true,
 				label: 'Control Polygon'
 			},
 			pointsActive: {
@@ -20,7 +20,7 @@ const createSettings = () => {
 				label: 'Snap to Move'
 			},
 			indicatorActive: {
-				value: false,
+				value: true,
 				label: 'Indicator'
 			}
 		},
@@ -31,15 +31,15 @@ const createSettings = () => {
 				label: 'Wireframe'
 			}
 		}
-	}
+	};
 
-	const { subscribe, set, update } = writable(defaultSettings)
+	const { subscribe, set, update } = writable(defaultSettings);
 
 	return {
 		subscribe,
 		update,
 		set
-	}
-}
+	};
+};
 
-export const settings = createSettings()
+export const settings = createSettings();
